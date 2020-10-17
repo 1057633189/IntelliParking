@@ -1,21 +1,23 @@
+import json
+import os
+
 import web
 
 urls = (
-    '/(.*)', 'hello'
+    '/(.*)parkingLotInfo', 'ParkingLotInfo'
 )
 
 app = web.application(urls, globals())
 
 
-class hello:
-    def GET(self, name):
-        i = web.input(times=1)
-        if not name:
-            name = 'world'
-        for c in range(int(i.times)):
-            print('Hello,', name + '!')
-        return 'Hello, ' + name + '!'
+class ParkingLotInfo:
+    def POST(self, *args):
+        parking_lot_name = json.loads(web.data().decode()).get("name")
+        # API
+        file_path = os.path.join('.', 'Parking lot', parking_lot_name, 'parking lot.json')
+        with open(file_path, 'r') as file:
+            return json.load(file)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run()

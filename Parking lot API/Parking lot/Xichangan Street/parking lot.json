@@ -1,0 +1,17 @@
+{
+    "info": {
+        "distance": "500m",
+        "location": "150 meters northeast of the intersection of Houniurouwan and Xuanwumennei Street, Xicheng District, Beijing",
+        "price": "4 RMB/hour",
+        "total space": "6"
+    },
+    "name": "Xichangan Street",
+    "space": {
+        "1": "using",
+        "2": "empty",
+        "3": "empty",
+        "4": "empty",
+        "5": "using",
+        "6": "using"
+    }
+}
