@@ -1,16 +1,27 @@
 {
-    "info": {
-        "distance": "0m",
-        "location": "B2 Hanguang Department Store, 176 Xidan North Street, Xicheng District, Beijing",
-        "price": "6 RMB/hour",
-        "total space": "5"
+    "info":{
+        "distance":"0m",
+        "location":"B2 Hanguang Department Store, 176 Xidan North Street, Xicheng District, Beijing",
+        "price":"6 RMB/hour",
+        "total space":"5"
     },
-    "name": "Hanguang Department Store",
-    "space": {
-        "1": "using",
-        "2": "using",
-        "3": "using",
-        "4": "using",
-        "5": "empty"
+    "name":"Hanguang Department Store",
+    "reservation":{
+        "1":[
+            "2020-10-31 12:0--2020-10-31 2:0"
+        ],
+        "2":[],
+        "3":[],
+        "4":[],
+        "5":[
+            "2020-10-15 12:15--2020-10-15 4:10"
+        ]
+    },
+    "space":{
+        "1":"using",
+        "2":"using",
+        "3":"using",
+        "4":"using",
+        "5":"empty"
     }
 }

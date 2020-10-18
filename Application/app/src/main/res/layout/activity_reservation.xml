@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textview_reservation_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Parking Reservation" />
+
+    <Button
+        android:id="@+id/button_reservation_date_begin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="set begin date" />
+
+    <Button
+        android:id="@+id/button_reservation_time_begin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="set begin time" />
+
+    <TextView
+        android:id="@+id/textview_reservation_date_begin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Begin date: " />
+
+    <TextView
+        android:id="@+id/textview_reservation_time_begin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Begin time: " />
+
+    <Button
+        android:id="@+id/button_reservation_date_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="set end date" />
+
+    <Button
+        android:id="@+id/button_reservation_time_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="set end time" />
+
+    <TextView
+        android:id="@+id/textview_reservation_date_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="End date: " />
+
+    <TextView
+        android:id="@+id/textview_reservation_time_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="End time: " />
+
+    <Button
+        android:id="@+id/button_reservation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reservation" />
+
+</LinearLayout>

@@ -10,8 +10,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".parkinglot.HanguangDepartmentStore"></activity>
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <activity android:name=".parkinglot.XidanCulturalSquare"></activity>
+        <activity android:name=".parkinglot.XichanganStreet" />
+        <activity android:name=".parkinglot.Reservation" />
+        <activity android:name=".parkinglot.HanguangDepartmentStore" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

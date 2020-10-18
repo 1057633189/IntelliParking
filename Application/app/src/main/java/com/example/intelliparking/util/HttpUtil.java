@@ -29,4 +29,22 @@ public class HttpUtil {
         client.newCall(request).enqueue(callback);
     }
 
+    public static void parkingReservation(String parkingLotName, String parkingSpace, String time, okhttp3.Callback callback) {
+        JSONObject json = new JSONObject();
+        try {
+            json.put("name", parkingLotName);
+            json.put("space", parkingSpace);
+            json.put("time", time);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        OkHttpClient client = new OkHttpClient();
+        RequestBody requestBody = RequestBody.create(json.toString(), HttpUtil.JSON);
+        Request request = new Request.Builder()
+                .url(HttpUtil.address + "parkingReservation")
+                .post(requestBody)
+                .build();
+        client.newCall(request).enqueue(callback);
+    }
+
 }
