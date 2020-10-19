@@ -6,7 +6,8 @@ import web
 
 urls = (
     '/(.*)parkingLotInfo', 'ParkingLotInfo',
-    '/(.*)parkingReservation', 'ParkingReservation'
+    '/(.*)parkingReservation', 'ParkingReservation',
+    '/(.*)parkingLotReservationInfo', 'ParkingLotReservationInfo'
 )
 
 app = web.application(urls, globals())
@@ -29,7 +30,6 @@ class ParkingReservation:
         parking_reservation_time = i.get('time').split('--')
         # API
         file_path = os.path.join('.', 'Parking lot', parking_lot_name, 'parking lot.json')
-        print(file_path)
         with open(file_path, 'r') as file:
             f = file.read()
             j = json.loads(f)
@@ -57,6 +57,19 @@ class ParkingReservation:
                         file.truncate()
                         json.dump(j, file, sort_keys=True, indent=4, separators=(',', ':'))
                         return 'success'
+
+
+class ParkingLotReservationInfo:
+    def POST(self, *args):
+        i = json.loads(web.data().decode())
+        parking_lot_name = i.get('name')
+        parking_space = i.get('space')
+        # API
+        file_path = os.path.join('.', 'Parking lot', parking_lot_name, 'parking lot.json')
+        with open(file_path, 'r') as file:
+            j = json.load(file)
+            reservation_list = j['reservation'][parking_space]
+            return ';'.join(reservation_list)
 
 
 if __name__ == '__main__':
