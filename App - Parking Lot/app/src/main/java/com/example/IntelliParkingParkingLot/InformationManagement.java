@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
@@ -20,6 +22,8 @@ import okhttp3.Call;
 import okhttp3.Response;
 
 public class InformationManagement extends AppCompatActivity {
+
+    private String parkingLotName = "Hanguang Department Store";
 
     private TextView locationTV;
     private TextView priceTV;
@@ -52,10 +56,44 @@ public class InformationManagement extends AppCompatActivity {
         changePrice = (Button) findViewById(R.id.im_button);
 
         space1 = (ImageView) findViewById(R.id.im_1);
+        space1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getParkingLotReservationInfo(parkingLotName, "1");
+            }
+        });
+
         space2 = (ImageView) findViewById(R.id.im_2);
+        space2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getParkingLotReservationInfo(parkingLotName, "2");
+            }
+        });
+
         space3 = (ImageView) findViewById(R.id.im_3);
+        space3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getParkingLotReservationInfo(parkingLotName, "3");
+            }
+        });
+
         space4 = (ImageView) findViewById(R.id.im_4);
+        space4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getParkingLotReservationInfo(parkingLotName, "4");
+            }
+        });
+
         space5 = (ImageView) findViewById(R.id.im_5);
+        space5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getParkingLotReservationInfo(parkingLotName, "5");
+            }
+        });
 
         getParkingLotInfo();
         handler = new Handler();
@@ -129,6 +167,36 @@ public class InformationManagement extends AppCompatActivity {
                     });
                 } catch (JSONException e) {
                     e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void getParkingLotReservationInfo(String parkingLotName, String parkingSpace) {
+        HttpUtil.parkingLotReservationInfo(parkingLotName, parkingSpace, new okhttp3.Callback() {
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                final String responseData = Objects.requireNonNull(response.body()).string();
+                Log.d("RESERVATION", responseData);
+                if (responseData.isEmpty()) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(InformationManagement.this, "No reservation", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(InformationManagement.this, responseData, Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             }
 
