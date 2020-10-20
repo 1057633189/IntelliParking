@@ -2,8 +2,10 @@ package com.example.IntelliParkingDriver.parkinglot;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -56,7 +58,7 @@ public class Reservation extends AppCompatActivity {
         parkingSpace = getIntent().getStringExtra("extra_data").split("-")[1];
 
         title = (TextView) findViewById(R.id.textview_reservation_title);
-        title.setText("Reservation for space \"" + parkingSpace + "\" of \"" + parkingLotName + "\"");
+        title.setText("For parking space: " + parkingSpace);
         beginDate = (TextView) findViewById(R.id.textview_reservation_date_begin);
         beginTime = (TextView) findViewById(R.id.textview_reservation_time_begin);
         endDate = (TextView) findViewById(R.id.textview_reservation_date_end);
@@ -71,7 +73,7 @@ public class Reservation extends AppCompatActivity {
                         beginYear = year;
                         beginMonth = month + 1;
                         beginDay = day;
-                        beginDate.setText("Begin date: " + beginYear + "-" + beginMonth + "-" + beginDay);
+                        beginDate.setText(Html.fromHtml("Begin Date: <b>" + beginYear + "-" + beginMonth + "-" + beginDay + "</b>"));
                     }
                 }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -85,7 +87,7 @@ public class Reservation extends AppCompatActivity {
                     public void onTimeSet(TimePicker view, int hour, int minute) {
                         beginHour = hour;
                         beginMinute = minute;
-                        beginTime.setText("Begin time: " + beginHour + ":" + beginMinute);
+                        beginTime.setText(Html.fromHtml("Begin Time: <b>" + beginHour + ":" + beginMinute + "</b>"));
                     }
                 }, Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), true).show();
             }
@@ -100,7 +102,7 @@ public class Reservation extends AppCompatActivity {
                         endYear = year;
                         endMonth = month + 1;
                         endDay = day;
-                        endDate.setText("End date: " + endYear + "-" + endMonth + "-" + endDay);
+                        endDate.setText(Html.fromHtml("End Date: <b>" + endYear + "-" + endMonth + "-" + endDay + "</b>"));
                     }
                 }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -114,7 +116,7 @@ public class Reservation extends AppCompatActivity {
                     public void onTimeSet(TimePicker view, int hour, int minute) {
                         endHour = hour;
                         endMinute = minute;
-                        endTime.setText("End time: " + endHour + ":" + endMinute);
+                        endTime.setText(Html.fromHtml("End Time: <b>" + endHour + ":" + endMinute + "</b>"));
                     }
                 }, Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), true).show();
             }
@@ -136,7 +138,9 @@ public class Reservation extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(Reservation.this, "Parking reservation successful", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Reservation.this, "Parking space " + parkingSpace + " reservation successful", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(Reservation.this, HanguangDepartmentStore.class);
+                                    startActivity(intent);
                                     finish();
                                 }
                             });
@@ -157,6 +161,13 @@ public class Reservation extends AppCompatActivity {
                 });
             }
         });
+    }
+    
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Reservation.this, HanguangDepartmentStore.class);
+        startActivity(intent);
+        finish();
     }
 
 }

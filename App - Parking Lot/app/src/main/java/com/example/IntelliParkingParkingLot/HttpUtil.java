@@ -46,4 +46,21 @@ public class HttpUtil {
         client.newCall(request).enqueue(callback);
     }
 
+    public static void changePrice(String parkingLotName, String price, okhttp3.Callback callback) {
+        JSONObject json = new JSONObject();
+        try {
+            json.put("name", parkingLotName);
+            json.put("price", price);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        OkHttpClient client = new OkHttpClient();
+        RequestBody requestBody = RequestBody.create(json.toString(), HttpUtil.JSON);
+        Request request = new Request.Builder()
+                .url(HttpUtil.address + "changePrice")
+                .post(requestBody)
+                .build();
+        client.newCall(request).enqueue(callback);
+    }
+
 }

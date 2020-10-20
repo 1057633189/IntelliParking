@@ -6,10 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.IntelliParkingDriver.parkinglot.HanguangDepartmentStore;
-import com.example.IntelliParkingDriver.parkinglot.XichanganStreet;
-import com.example.IntelliParkingDriver.parkinglot.XidanCulturalSquare;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,29 +17,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button1 = (Button) findViewById(R.id.button1);
-        button1.setOnClickListener(new View.OnClickListener() {
+        Button start = (Button) findViewById(R.id.start);
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Link to map ...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        Button hds = (Button) findViewById(R.id.hdspl);
+        hds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, HanguangDepartmentStore.class);
-                startActivity(intent);
-            }
-        });
-
-        Button button2 = (Button) findViewById(R.id.button2);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, XidanCulturalSquare.class);
-                startActivity(intent);
-            }
-        });
-
-        Button button3 = (Button) findViewById(R.id.button3);
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, XichanganStreet.class);
                 startActivity(intent);
             }
         });
