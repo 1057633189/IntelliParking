@@ -7,7 +7,8 @@ import web
 urls = (
     '/(.*)parkingLotInfo', 'ParkingLotInfo',
     '/(.*)parkingReservation', 'ParkingReservation',
-    '/(.*)parkingLotReservationInfo', 'ParkingLotReservationInfo'
+    '/(.*)parkingLotReservationInfo', 'ParkingLotReservationInfo',
+    '/(.*)changePrice', 'ChangePrice'
 )
 
 app = web.application(urls, globals())
@@ -37,8 +38,7 @@ class ParkingReservation:
             reservation_list = j['reservation'][parking_space]
             if len(reservation_list) is 0:
                 reservation_list.append('--'.join(parking_reservation_time))
-                file.truncate()
-                json.dump(j, file, sort_keys=True, indent=4, separators=(',', ':'))
+                json.dump(j, file, sort_keys=True, indent=4, separators=(',', ': '))
                 return 'success'
             else:
                 for each_reservation in reservation_list:
@@ -47,15 +47,14 @@ class ParkingReservation:
                     begin_new = datetime.strptime(parking_reservation_time[0], '%Y-%m-%d %H:%M')
                     end_new = datetime.strptime(parking_reservation_time[1], '%Y-%m-%d %H:%M')
                     if begin_new.__gt__(begin_old) and begin_new.__lt__(end_old):
-                        json.dump(j, file, sort_keys=True, indent=4, separators=(',', ':'))
+                        json.dump(j, file, sort_keys=True, indent=4, separators=(',', ': '))
                         return 'error'
                     elif end_new.__gt__(begin_old) and end_new.__lt__(end_old):
-                        json.dump(j, file, sort_keys=True, indent=4, separators=(',', ':'))
+                        json.dump(j, file, sort_keys=True, indent=4, separators=(',', ': '))
                         return 'error'
                     else:
                         reservation_list.append('--'.join(parking_reservation_time))
-                        file.truncate()
-                        json.dump(j, file, sort_keys=True, indent=4, separators=(',', ':'))
+                        json.dump(j, file, sort_keys=True, indent=4, separators=(',', ': '))
                         return 'success'
 
 
@@ -70,6 +69,25 @@ class ParkingLotReservationInfo:
             j = json.load(file)
             reservation_list = j['reservation'][parking_space]
             return ';'.join(reservation_list)
+
+
+class ChangePrice:
+    def POST(self, *args):
+        i = json.loads(web.data().decode())
+        parking_lot_name = i.get('name')
+        price = i.get('price')
+        # API
+        file_path = os.path.join('.', 'Parking lot', parking_lot_name, 'parking lot.json')
+        with open(file_path, 'r') as file:
+            f = file.read()
+            j = json.loads(f)
+        with open(file_path, 'w') as file:
+            if price.endswith('RMB/hour'):
+                j['info']['price'] = price
+            else:
+                j['info']['price'] = price + ' RMB/hour'
+            json.dump(j, file, sort_keys=True, indent=4, separators=(',', ': '))
+            return 'success'
 
 
 if __name__ == '__main__':

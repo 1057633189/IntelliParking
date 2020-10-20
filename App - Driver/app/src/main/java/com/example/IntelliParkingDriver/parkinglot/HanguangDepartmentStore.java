@@ -3,6 +3,7 @@ package com.example.IntelliParkingDriver.parkinglot;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,6 +31,7 @@ public class HanguangDepartmentStore extends AppCompatActivity {
     private ImageView hds_3;
     private ImageView hds_4;
     private ImageView hds_5;
+    private ImageView hds_6;
 
     private Handler handler;
 
@@ -96,6 +98,17 @@ public class HanguangDepartmentStore extends AppCompatActivity {
             }
         });
 
+        hds_6 = (ImageView) findViewById(R.id.hds_6);
+        hds_6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HanguangDepartmentStore.this, Reservation.class);
+                intent.putExtra("extra_data", "Hanguang Department Store-6");
+                startActivity(intent);
+                finish();
+            }
+        });
+
         getParkingLotInfo();
         handler = new Handler();
         Runnable runnable = new Runnable() {
@@ -128,6 +141,7 @@ public class HanguangDepartmentStore extends AppCompatActivity {
                     final String hds_3_s = spaceJSON.get("3").toString();
                     final String hds_4_s = spaceJSON.get("4").toString();
                     final String hds_5_s = spaceJSON.get("5").toString();
+                    final String hds_6_s = spaceJSON.get("6").toString();
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -161,11 +175,17 @@ public class HanguangDepartmentStore extends AppCompatActivity {
                                 currentSpace += 1;
                                 hds_5.setImageResource(R.drawable.empty5);
                             }
-                            ((TextView) findViewById(R.id.hds_textView1)).setText("Location: " + location);
-                            ((TextView) findViewById(R.id.hds_textView2)).setText("Distance: " + distance);
-                            ((TextView) findViewById(R.id.hds_textView3)).setText("Price: " + price);
-                            ((TextView) findViewById(R.id.hds_textView4)).setText("Total parking space: " + totalSpace);
-                            ((TextView) findViewById(R.id.hds_textView5)).setText("Available parking space: " + currentSpace);
+                            if (hds_6_s.equalsIgnoreCase("using")) {
+                                hds_6.setImageResource(R.drawable.using6);
+                            } else if (hds_6_s.equalsIgnoreCase("empty")) {
+                                currentSpace += 1;
+                                hds_6.setImageResource(R.drawable.empty6);
+                            }
+                            ((TextView) findViewById(R.id.hds_textView1)).setText(Html.fromHtml("Location: <b>" + location + "</b>"));
+                            ((TextView) findViewById(R.id.hds_textView2)).setText(Html.fromHtml("Distance: <b>" + distance + "</b>"));
+                            ((TextView) findViewById(R.id.hds_textView3)).setText(Html.fromHtml("Price: <b>" + price + "</b>"));
+                            ((TextView) findViewById(R.id.hds_textView4)).setText(Html.fromHtml("Total parking space: <b>" + totalSpace + "</b>"));
+                            ((TextView) findViewById(R.id.hds_textView5)).setText(Html.fromHtml("Available parking space: <b>" + currentSpace + "</b>"));
                         }
                     });
                 } catch (JSONException e) {

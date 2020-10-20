@@ -11,8 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name="com.example.IntelliParkingDriver.parkinglot.XidanCulturalSquare"></activity>
-        <activity android:name="com.example.IntelliParkingDriver.parkinglot.XichanganStreet" />
         <activity android:name="com.example.IntelliParkingDriver.parkinglot.Reservation" />
         <activity android:name="com.example.IntelliParkingDriver.parkinglot.HanguangDepartmentStore" />
         <activity android:name="com.example.IntelliParkingDriver.MainActivity">

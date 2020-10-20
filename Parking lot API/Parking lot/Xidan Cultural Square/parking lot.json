@@ -6,11 +6,20 @@
         "total space": "5"
     },
     "name": "Xidan Cultural Square",
+    "reservation": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+        "6": []
+    },
     "space": {
         "1": "empty",
         "2": "using",
         "3": "empty",
         "4": "using",
-        "5": "using"
+        "5": "using",
+        "6": "empty"
     }
 }
