@@ -1,0 +1,20 @@
+[
+    {
+        "parking lot name": "Hanguang Parking Lot",
+        "parking lot address": "174 Xidan North Street",
+        "driver name": "Brown",
+        "driver phone number": "12345678",
+        "driver car number": "A12345",
+        "total price": "20",
+        "booking time": "2020-10-28 13:00-17:00"
+    },
+    {
+        "parking lot name": "Hanguang Parking Lot",
+        "parking lot address": "174 Xidan North Street",
+        "driver name": "Jack",
+        "driver phone number": "12345678",
+        "driver car number": "A12345",
+        "total price": "20",
+        "booking time": "2020-10-28 13:00-17:00"
+    }
+]
