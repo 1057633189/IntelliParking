@@ -1,15 +1,9 @@
 # IntelliParking :parking:
-Unimelb 2020 SM2 INFO90010 IntelliParking
+Unimelb 2020 SM2 INFO90010 IntelliParking :car:
 
-Team Parking :car:
+Team Parking: Chen Fu, Hua Chen, Yuetong Li, Zhihan Guo
 
-- Chen Fu
-
-- Hua Chen
-
-- Yuetong Li
-
-- Zhihan Guo
+Link to the prototype demo: <https://youtu.be/-3Lvla3YkAs>
 ## Change UI (Add a map interface into UI)
 New UI
 
