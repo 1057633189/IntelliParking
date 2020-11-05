@@ -10,7 +10,7 @@
         android:id="@+id/searchtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="30dp"
         android:text="Search for a place you want to park"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -24,35 +24,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="100dp"
         android:drawableLeft="@drawable/search2"
         android:text="Search"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/searchedittext" />
+        app:layout_constraintStart_toEndOf="@+id/searchedittext"
+        app:layout_constraintTop_toBottomOf="@+id/searchtitle" />
 
     <EditText
         android:id="@+id/searchedittext"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="Enter a place"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchtitle" />
 
     <ImageView
-        android:id="@+id/searchimage"
-        android:layout_width="188dp"
-        android:layout_height="184dp"
-        android:layout_marginTop="80dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchtitle"
-        app:srcCompat="@drawable/search" />
+        android:id="@+id/imageView"
+        android:layout_width="472dp"
+        android:layout_height="669dp"
+        android:layout_marginTop="84dp"
+        app:layout_constraintTop_toTopOf="@+id/searchtitle"
+        app:srcCompat="@drawable/map"
+        tools:layout_editor_absoluteX="-40dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
